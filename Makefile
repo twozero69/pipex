@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/04 23:30:16 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/05 05:13:37 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= pipex
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 SRCS		= srcs/main.c \
 			srcs/init_pipex.c \
 			srcs/head.c \

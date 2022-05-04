@@ -6,7 +6,11 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:46 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 23:17:46 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/05 05:58:14 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
+void	head()
+{
+
+}
