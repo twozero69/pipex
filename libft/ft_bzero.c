@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 20:39:56 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/15 22:44:35 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/16 11:32:53 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
+#include <sys/types.h>
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	t_pipex	pipex;
+	unsigned char		*current_pt;
+	unsigned char		*last_pt;
 
-	init_pipex(&pipex, argc, argv);
-	head(&pipex);
-	middle(&pipex);
-	end(&pipex);
-	free_all(&pipex);
-	return (0);
+	current_pt = s;
+	last_pt = current_pt + n;
+	while (current_pt < last_pt)
+	{
+		*current_pt = 0;
+		current_pt++;
+	}
 }

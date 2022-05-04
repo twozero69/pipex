@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 20:39:56 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 11:10:22 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/22 22:29:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
-
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	t_pipex	pipex;
+	char	character;
 
-	init_pipex(&pipex, argc, argv);
-	head(&pipex);
-	middle(&pipex);
-	end(&pipex);
-	free_all(&pipex);
+	character = (char)c;
+	while (*s != '\0')
+	{
+		if (*s == character)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
 	return (0);
 }

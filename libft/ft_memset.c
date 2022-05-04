@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 20:39:56 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/15 19:38:39 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/16 11:33:45 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
+#include <sys/types.h>
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_pipex	pipex;
+	unsigned char	*current_pt;
+	unsigned char	*last_pt;
 
-	init_pipex(&pipex, argc, argv);
-	head(&pipex);
-	middle(&pipex);
-	end(&pipex);
-	free_all(&pipex);
-	return (0);
+	current_pt = b;
+	last_pt = current_pt + len;
+	while (current_pt < last_pt)
+	{
+		*current_pt = c;
+		current_pt++;
+	}
+	return (b);
 }

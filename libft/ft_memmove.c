@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 20:39:56 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/03/16 10:52:33 by younglee          #+#    #+#             */
+/*   Updated: 2022/03/18 21:12:58 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_pipex	pipex;
+	char	*char_dst;
+	char	*char_src;
+	size_t	idx;
 
-	init_pipex(&pipex, argc, argv);
-	head(&pipex);
-	middle(&pipex);
-	end(&pipex);
-	free_all(&pipex);
-	return (0);
+	if (dst == src || len == 0)
+		return (dst);
+	if (dst < src)
+		return (ft_memcpy(dst, src, len));
+	char_dst = (char *)dst;
+	char_src = (char *)src;
+	idx = len;
+	while (idx != 0)
+	{
+		idx--;
+		char_dst[idx] = char_src[idx];
+	}
+	return (dst);
 }
