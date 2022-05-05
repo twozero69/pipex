@@ -6,26 +6,34 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/05 19:08:07 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/05 19:36:58 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= pipex
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-SRCS		= srcs/main.c \
+M_SRCS		= srcs/main.c \
 			srcs/init_pipex.c \
 			srcs/start_pipex.c \
 			srcs/end_pipex.c \
 			srcs/free_all.c \
 			srcs/exit_with_error.c \
 			srcs/close_fd.c
-OBJS		= ${SRCS:.c=.o}
+M_OBJS		= ${M_SRCS:.c=.o}
+B_SRCS		= bonus/main_bonus.c
+B_OBJS		= ${B_SRCS:.c=.o}
 INC			= -I./includes
 RM			= rm -f
 LIBFT		= -L./libft -lft
 LIBFT_INC	= -I./libft
 LIBFT_LIB	= libft/libft.a
+
+ifndef WITH_BONUS
+	OBJS	= ${M_OBJS}
+else
+	OBJS	= ${B_OBJS}
+endif
 
 .c.o:
 			${CC} ${CFLAGS} ${INC} ${LIBFT_INC} -c $< -o ${<:.c=.o}
@@ -39,7 +47,7 @@ ${LIBFT_LIB}:
 			@make -C libft
 
 clean:
-			${RM} ${OBJS}
+			${RM} ${M_OBJS} ${B_OBJS}
 			@make clean -C libft
 
 fclean:		clean
@@ -47,4 +55,7 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+bonus:
+			@make WITH_BONUS=1 all
+
+.PHONY:		all clean fclean re bonus
