@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:26 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/05 04:57:29 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/05 19:08:51 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "pipex.h"
 
-void	free_split_arr(char **split_arr)
+static void	free_split_arr(char **split_arr)
 {
 	int	idx;
 
@@ -33,4 +33,5 @@ void	free_all(t_pipex *pipex)
 	free_split_arr(pipex->cmd1_argv);
 	free_split_arr(pipex->cmd2_argv);
 	free_split_arr(pipex->cmd_path);
+	close_all_fd(pipex);
 }

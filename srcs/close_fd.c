@@ -1,12 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   middle.c                                           :+:      :+:    :+:   */
+/*   close_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 23:17:42 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/04 23:17:49 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/05/05 19:07:55 by younglee          #+#    #+#             */
+/*   Updated: 2022/05/05 19:08:41 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include "pipex.h"
+
+void	close_one_fd(int *fd, t_pipex *pipex)
+{
+	if (*fd == -1)
+		return ;
+	close(*fd);
+	exit_with_clib_error("close", pipex);
+	*fd = -1;
+}
+
+void	close_all_fd(t_pipex *pipex)
+{
+	close_one_fd(&pipex->input_fd, pipex);
+	close_one_fd(&pipex->output_fd, pipex);
+	close_one_fd(&pipex->pipe_fd[0], pipex);
+	close_one_fd(&pipex->pipe_fd[1], pipex);
+}

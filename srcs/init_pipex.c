@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:22:03 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/05 05:51:06 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/05 18:40:23 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,8 @@ void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex)
 	pipex->output_path = argv[4];
 	get_cmd_path(envp, pipex);
 	check_access(pipex);
+	pipex->input_fd = -1;
+	pipex->output_fd = -1;
+	pipex->pipe_fd[0] = -1;
+	pipex->pipe_fd[1] = -1;
 }

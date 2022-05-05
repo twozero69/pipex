@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/05 05:30:06 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/05 19:07:43 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ typedef struct s_pipex
 	char	**cmd1_argv;
 	char	**cmd2_argv;
 	char	**cmd_path;
+	int		input_fd;
+	int		output_fd;
+	int		pipe_fd[2];
 }t_pipex;
 
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex);
 void	free_all(t_pipex *pipex);
 void	exit_with_clib_error(char *msg, t_pipex *pipex);
 void	exit_with_custom_error(int my_errno, t_pipex *pipex);
+void	start_pipex(t_pipex *pipex);
+void	end_pipex(t_pipex *pipex);
+void	close_one_fd(int *fd, t_pipex *pipex);
+void	close_all_fd(t_pipex *pipex);
 
 #endif
