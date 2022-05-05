@@ -6,14 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:26 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/05 19:08:51 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/06 01:23:16 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "pipex.h"
 
-static void	free_split_arr(char **split_arr)
+void	free_split_arr(char **split_arr)
 {
 	int	idx;
 

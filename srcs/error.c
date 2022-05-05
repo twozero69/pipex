@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_with_error.c                                  :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:53 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/05 05:29:35 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/06 07:22:29 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exit_with_custom_error(int my_errno, t_pipex *pipex)
 	exit(my_errno);
 }
 
-void	exit_with_clib_error(char *msg, t_pipex *pipex)
+void	print_clib_error(char *msg, t_pipex *pipex)
 {
 	if (errno == 0)
 		return ;
@@ -43,6 +43,14 @@ void	exit_with_clib_error(char *msg, t_pipex *pipex)
 		ft_putstr_fd(": ", 2);
 		perror(msg);
 	}
+	errno = 0;
+}
+
+void	exit_with_clib_error(char *msg, t_pipex *pipex)
+{
+	if (errno == 0)
+		return ;
+	print_clib_error(msg, pipex);
 	free_all(pipex);
 	exit(errno);
 }
