@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/06 09:21:21 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/06 20:03:12 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include <stddef.h>
+# include <sys/wait.h>
 
 # ifndef TRUE
 #  define TRUE 1
@@ -34,6 +35,8 @@ typedef struct s_pipex
 	int		input_fd;
 	int		output_fd;
 	int		pipe_fd[2];
+	pid_t	cmd1_pid;
+	pid_t	cmd2_pid;
 }t_pipex;
 
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex);
@@ -47,5 +50,6 @@ void	start_pipex(char **envp, t_pipex *pipex);
 void	end_pipex(char **envp, t_pipex *pipex);
 void	close_one_fd(int *fd, char *msg, t_pipex *pipex);
 void	close_all_fd(t_pipex *pipex);
+void	wait_all_child(t_pipex *pipex);
 
 #endif

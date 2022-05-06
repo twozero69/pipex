@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:22:03 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/06 07:35:16 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/06 18:04:12 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	get_cmd_path(char **envp, t_pipex *pipex)
 		if (ft_strncmp(envp[idx], "PATH=", 5) == 0)
 		{
 			pipex->cmd_path = ft_split(envp[idx] + 5, ':');
-			print_clib_error("cmd_path split", pipex);
+			print_clib_error("init_pipex.c: cmd_path split", pipex);
 			return ;
 		}
 		idx++;
@@ -57,9 +57,9 @@ void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex)
 	pipex->exec_path = argv[0];
 	pipex->input_path = argv[1];
 	pipex->cmd1_argv = ft_split(argv[2], ' ');
-	print_clib_error("cmd1_argv", pipex);
+	print_clib_error("init_pipex.c: cmd1_argv split", pipex);
 	pipex->cmd2_argv = ft_split(argv[3], ' ');
-	print_clib_error("cmd2_argv", pipex);
+	print_clib_error("init_pipex.c: cmd2_argv split", pipex);
 	pipex->output_path = argv[4];
 	get_cmd_path(envp, pipex);
 }

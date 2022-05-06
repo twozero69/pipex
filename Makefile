@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/06 08:24:32 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/06 20:47:24 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ M_SRCS		= srcs/main.c \
 			srcs/free_all.c \
 			srcs/error.c \
 			srcs/check_cmd_path.c \
-			srcs/close_fd.c
+			srcs/close_fd.c \
+			srcs/wait_all_child.c
 M_OBJS		= ${M_SRCS:.c=.o}
 B_SRCS		= bonus/main_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
@@ -59,4 +60,6 @@ re:			fclean all
 # bonus:
 # 			@make WITH_BONUS=1 all
 
+norm:
+			@norminette srcs/*.[ch] includes/*.[ch] bonus/*.[ch]
 .PHONY:		all clean fclean re bonus
