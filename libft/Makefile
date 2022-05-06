@@ -6,12 +6,12 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 17:09:11 by younglee          #+#    #+#              #
-#    Updated: 2022/03/24 17:20:56 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/06 07:55:09 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
-CC			= gcc
+CC			= @cc
 CFLAGS		= -Wall -Wextra -Werror
 INC			= -I.
 M_SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
@@ -20,8 +20,8 @@ M_SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 B_SRCS		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 M_OBJS		= ${M_SRCS:.c=.o}
 B_OBJS		= ${B_SRCS:.c=.o}
-RM			= rm -f
-AR			= ar -rcs
+RM			= @rm -f
+AR			= @ar -rcs
 
 ifdef WITH_BONUS
 	OBJS	= ${M_OBJS} ${B_OBJS}
@@ -46,6 +46,6 @@ fclean:		clean
 re:			fclean all
 
 bonus:
-			make WITH_BONUS=1 all
+			@make WITH_BONUS=1 all
 
 .PHONY:		.c.o all clean fclean re bonus

@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/06 07:27:26 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/06 08:24:32 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= pipex
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+CC			= @cc
+CFLAGS		= -Wall -Wextra -Werror -g
 M_SRCS		= srcs/main.c \
 			srcs/init_pipex.c \
 			srcs/start_pipex.c \
@@ -25,7 +25,7 @@ M_OBJS		= ${M_SRCS:.c=.o}
 B_SRCS		= bonus/main_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
 INC			= -I./includes
-RM			= rm -f
+RM			= @rm -f
 LIBFT		= -L./libft -lft
 LIBFT_INC	= -I./libft
 LIBFT_LIB	= libft/libft.a
@@ -56,7 +56,7 @@ fclean:		clean
 
 re:			fclean all
 
-bonus:
-			@make WITH_BONUS=1 all
+# bonus:
+# 			@make WITH_BONUS=1 all
 
 .PHONY:		all clean fclean re bonus

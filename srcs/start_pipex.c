@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:46 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/06 07:40:16 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/06 09:26:05 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,7 @@ void	start_pipex(char **envp, t_pipex *pipex)
 	print_clib_error("start_pipex.c: pipe", pipex);
 	pid = fork();
 	print_clib_error("start_pipex.c: fork", pipex);
-	if (pid > 0)
-	{
-		waitpid(pid, NULL, 0);
-		print_clib_error("start_pipex.c: wait", pipex);
-	}
-	else if (pid == 0)
+	if (pid == 0)
 	{
 		pipex->input_fd = open(pipex->input_path, O_RDONLY);
 		exit_with_clib_error(pipex->input_path, pipex);
