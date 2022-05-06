@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_all_child.c                                   :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 19:50:20 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 05:00:12 by younglee         ###   ########seoul.kr  */
+/*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
+/*   Updated: 2022/05/07 05:08:26 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include "libft.h"
+#include <unistd.h>
+#include "pipex_bonus.h"
 
-void	wait_all_child(t_pipex *pipex)
+int	main(int argc, char **argv, char **envp)
 {
-	waitpid(pipex->cmd1_pid, NULL, WNOHANG | WUNTRACED);
-	waitpid(pipex->cmd2_pid, NULL, WNOHANG | WUNTRACED);
+	t_pipex	pipex;
+	int		cmd_no;
+
+	init_pipex(argc, argv, envp, &pipex);
+	start_pipex(envp, &pipex);
+	cmd_no = 1;
+	while (cmd_no < pipex.cmd_count - 1)
+	{
+		middle_pipex(cmd_no, envp, &pipex);
+		cmd_no++;
+	}
+	end_pipex(envp, &pipex);
+	wait_all_child(&pipex);
+	free_all(&pipex);
+	return (0);
 }

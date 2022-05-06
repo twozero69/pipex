@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/06 20:47:24 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/07 08:34:09 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,27 @@ M_SRCS		= srcs/main.c \
 			srcs/close_fd.c \
 			srcs/wait_all_child.c
 M_OBJS		= ${M_SRCS:.c=.o}
-B_SRCS		= bonus/main_bonus.c
+B_SRCS		= bonus/main_bonus.c \
+			bonus/init_pipex_bonus.c \
+			bonus/start_pipex_bonus.c \
+			bonus/end_pipex_bonus.c \
+			bonus/free_all_bonus.c \
+			bonus/error_bonus.c \
+			bonus/check_cmd_path_bonus.c \
+			bonus/close_fd_bonus.c \
+			bonus/wait_all_child_bonus.c \
+			bonus/middle_pipex_bonus.c \
+			bonus/here_doc_pipex_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
 INC			= -I./includes
 RM			= @rm -f
 LIBFT		= -L./libft -lft
 LIBFT_INC	= -I./libft
 LIBFT_LIB	= libft/libft.a
+GNL_SRCS	= get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c
+GNL_OBJS	= ${GNL_SRCS:.c=.o}
+GNL_INC		= -I./get_next_line
 
 ifndef WITH_BONUS
 	OBJS	= ${M_OBJS}
@@ -38,10 +52,10 @@ else
 endif
 
 .c.o:
-			${CC} ${CFLAGS} ${INC} ${LIBFT_INC} -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} ${INC} ${LIBFT_INC} ${GNL_INC} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS} ${LIBFT_LIB}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
+${NAME}:	${OBJS} ${LIBFT_LIB} ${GNL_OBJS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${GNL_OBJS}
 
 all:		${NAME}
 
@@ -57,9 +71,10 @@ fclean:		clean
 
 re:			fclean all
 
-# bonus:
-# 			@make WITH_BONUS=1 all
+bonus:
+			@make WITH_BONUS=1 all
 
 norm:
 			@norminette srcs/*.[ch] includes/*.[ch] bonus/*.[ch]
-.PHONY:		all clean fclean re bonus
+
+.PHONY:		all clean fclean re bonus norm
