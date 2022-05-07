@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:07:55 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 08:14:00 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/07 18:13:25 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ static void	close_all_pipe_fd(t_pipex *pipex)
 	while (idx < pipex->cmd_count)
 	{
 		cmd = &pipex->cmd_array[idx];
-		close_one_fd(&cmd->pipe_fd[0], "close_fd.c: line 42", pipex);
-		close_one_fd(&cmd->pipe_fd[1], "close_fd.c: line 43", pipex);
+		close_one_fd(&cmd->pipe_fd[0], "close_fd.c: cmd pipe_fd[0]", pipex);
+		close_one_fd(&cmd->pipe_fd[1], "close_fd.c: cmd pipe_fd[1]", pipex);
 		idx++;
 	}
+	close_one_fd(&pipex->here_doc.pipe_fd[0], \
+	"close_fd.c: here_doc pipe_fd[0]", pipex);
+	close_one_fd(&pipex->here_doc.pipe_fd[1], \
+	"close_fd.c: here_doc pipe_fd[1]", pipex);
 }
 
 void	close_all_fd(t_pipex *pipex)

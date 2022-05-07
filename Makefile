@@ -6,13 +6,13 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/07 08:34:09 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/07 20:35:31 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= pipex
-CC			= @cc
-CFLAGS		= -Wall -Wextra -Werror -g
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 M_SRCS		= srcs/main.c \
 			srcs/init_pipex.c \
 			srcs/start_pipex.c \
@@ -36,7 +36,7 @@ B_SRCS		= bonus/main_bonus.c \
 			bonus/here_doc_pipex_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
 INC			= -I./includes
-RM			= @rm -f
+RM			= rm -f
 LIBFT		= -L./libft -lft
 LIBFT_INC	= -I./libft
 LIBFT_LIB	= libft/libft.a
@@ -63,7 +63,7 @@ ${LIBFT_LIB}:
 			@make -C libft
 
 clean:
-			${RM} ${M_OBJS} ${B_OBJS}
+			${RM} ${M_OBJS} ${B_OBJS} ${GNL_OBJS}
 			@make clean -C libft
 
 fclean:		clean

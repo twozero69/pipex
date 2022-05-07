@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:39:07 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 05:08:26 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/07 18:40:05 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ int	main(int argc, char **argv, char **envp)
 	int		cmd_no;
 
 	init_pipex(argc, argv, envp, &pipex);
-	start_pipex(envp, &pipex);
-	cmd_no = 1;
+	if (pipex.here_doc_flag)
+	{
+		here_doc_pipex(&pipex);
+		cmd_no = 0;
+	}
+	else
+	{
+		start_pipex(envp, &pipex);
+		cmd_no = 1;
+	}
 	while (cmd_no < pipex.cmd_count - 1)
 	{
 		middle_pipex(cmd_no, envp, &pipex);

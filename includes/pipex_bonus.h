@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 08:13:56 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/07 18:40:12 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 #  define FALSE 0
 # endif
 
-# define HERE_DOC_OPEN 65
-# define NORMAL_OPEN  577
+# define HERE_DOC_OPEN 1089
+# define NORMAL_OPEN 577
 
 typedef struct s_cmd
 {
@@ -44,7 +44,9 @@ typedef struct s_pipex
 	int		output_fd;
 	int		cmd_count;
 	t_cmd	*cmd_array;
+	t_cmd	here_doc;
 	int		here_doc_flag;
+	char	*limiter;
 }t_pipex;
 
 void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex);
@@ -57,6 +59,7 @@ void	exit_with_custom_error(int my_errno, t_pipex *pipex);
 void	start_pipex(char **envp, t_pipex *pipex);
 void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex);
 void	end_pipex(char **envp, t_pipex *pipex);
+void	here_doc_pipex(t_pipex *pipex);
 void	close_one_fd(int *fd, char *msg, t_pipex *pipex);
 void	close_all_fd(t_pipex *pipex);
 void	wait_all_child(t_pipex *pipex);

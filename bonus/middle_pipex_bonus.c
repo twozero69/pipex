@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 23:26:56 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 08:15:25 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/07 19:59:19 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex)
 	t_cmd	*prev_cmd;
 	t_cmd	*curr_cmd;
 
-	prev_cmd = &pipex->cmd_array[cmd_no - 1];
+	if (pipex->here_doc_flag && cmd_no == 0)
+		prev_cmd = &pipex->here_doc;
+	else
+		prev_cmd = &pipex->cmd_array[cmd_no - 1];
 	curr_cmd = &pipex->cmd_array[cmd_no];
 	pipe(curr_cmd->pipe_fd);
-	print_clib_error("middle_pipex.c: pipe", pipex);
 	curr_cmd->pid = fork();
-	print_clib_error("middle_pipex.c: fork", pipex);
 	if (curr_cmd->pid == 0)
 	{
 		check_cmd_path(&curr_cmd->cmd_argv[0], pipex);
