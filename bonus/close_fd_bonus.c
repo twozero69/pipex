@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:07:55 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 18:13:25 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:24:35 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 #include <errno.h>
 #include "pipex_bonus.h"
 
-void	close_one_fd(int *fd, char *msg, t_pipex *pipex)
+void	close_one_fd(int *fd)
 {
 	if (*fd == -1)
 		return ;
 	errno = 0;
 	close(*fd);
-	print_clib_error(msg, pipex);
 	*fd = -1;
 }
 
@@ -33,19 +32,17 @@ static void	close_all_pipe_fd(t_pipex *pipex)
 	while (idx < pipex->cmd_count)
 	{
 		cmd = &pipex->cmd_array[idx];
-		close_one_fd(&cmd->pipe_fd[0], "close_fd.c: cmd pipe_fd[0]", pipex);
-		close_one_fd(&cmd->pipe_fd[1], "close_fd.c: cmd pipe_fd[1]", pipex);
+		close_one_fd(&cmd->pipe_fd[0]);
+		close_one_fd(&cmd->pipe_fd[1]);
 		idx++;
 	}
-	close_one_fd(&pipex->here_doc.pipe_fd[0], \
-	"close_fd.c: here_doc pipe_fd[0]", pipex);
-	close_one_fd(&pipex->here_doc.pipe_fd[1], \
-	"close_fd.c: here_doc pipe_fd[1]", pipex);
+	close_one_fd(&pipex->here_doc.pipe_fd[0]);
+	close_one_fd(&pipex->here_doc.pipe_fd[1]);
 }
 
 void	close_all_fd(t_pipex *pipex)
 {
-	close_one_fd(&pipex->input_fd, "close_fd.c: input_fd", pipex);
-	close_one_fd(&pipex->output_fd, "close_fd.c: output_fd", pipex);
+	close_one_fd(&pipex->input_fd);
+	close_one_fd(&pipex->output_fd);
 	close_all_pipe_fd(pipex);
 }

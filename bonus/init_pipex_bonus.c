@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:22:03 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 20:07:31 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:21:42 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	get_cmd_path(char **envp, t_pipex *pipex)
 		if (ft_strncmp(envp[idx], "PATH=", 5) == 0)
 		{
 			pipex->cmd_path = ft_split(envp[idx] + 5, ':');
-			print_clib_error("init_pipex.c: cmd_path split", pipex);
 			return ;
 		}
 		idx++;
@@ -63,12 +62,10 @@ static void	make_cmd_array(int argc, char **argv, t_pipex *pipex)
 		argv++;
 	}
 	pipex->cmd_array = (t_cmd *)malloc(pipex->cmd_count * sizeof(t_cmd));
-	print_clib_error("init_pipex.c: malloc", pipex);
 	idx = 0;
 	while (idx < pipex->cmd_count)
 	{
 		pipex->cmd_array[idx].cmd_argv = ft_split(argv[idx], ' ');
-		print_clib_error("init_pipex.c: split", pipex);
 		pipex->cmd_array[idx].pipe_fd[0] = -1;
 		pipex->cmd_array[idx].pipe_fd[1] = -1;
 		pipex->cmd_array[idx].pid = 0;

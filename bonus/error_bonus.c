@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:53 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 02:29:18 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:18:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void	exit_with_custom_error(int my_errno, t_pipex *pipex)
 	exit(my_errno);
 }
 
-void	print_clib_error(char *msg, t_pipex *pipex)
+static void	print_clib_error(char *msg, t_pipex *pipex)
 {
-	if (errno == 0)
-		return ;
 	if (msg == NULL)
 		perror(pipex->exec_path);
 	else

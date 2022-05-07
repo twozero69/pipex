@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 01:11:06 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/06 07:36:01 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 04:10:01 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	check_cmd_path(char **cmd_name, t_pipex *pipex)
 		term = ft_strjoin(pipex->cmd_path[idx], "/");
 		path = ft_strjoin(term, *cmd_name);
 		free(term);
-		print_clib_error("check_access.c: strjoin", pipex);
 		if (access(path, X_OK) == 0)
 		{
 			free(*cmd_name);

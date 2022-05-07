@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:36 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 08:11:32 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:24:53 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	end_pipex(char **envp, t_pipex *pipex)
 	prev_cmd = &pipex->cmd_array[pipex->cmd_count - 2];
 	curr_cmd = &pipex->cmd_array[pipex->cmd_count - 1];
 	curr_cmd->pid = fork();
-	print_clib_error("end_pipex.c: fork", pipex);
 	if (curr_cmd->pid == 0)
 	{
 		if (pipex->here_doc_flag)
@@ -33,12 +32,13 @@ void	end_pipex(char **envp, t_pipex *pipex)
 		exit_with_clib_error(pipex->output_path, pipex);
 		check_cmd_path(&curr_cmd->cmd_argv[0], pipex);
 		dup2(prev_cmd->pipe_fd[0], STDIN_FILENO);
-		print_clib_error("end_pipex.c: dup2 pipe_fd[0]", pipex);
 		dup2(pipex->output_fd, STDOUT_FILENO);
-		print_clib_error("end_pipex.c: dup2 output_fd", pipex);
+		close_one_fd(&curr_cmd->pipe_fd[0]);
 		execve(curr_cmd->cmd_argv[0], curr_cmd->cmd_argv, envp);
-		print_clib_error("end_pipex.c: execve", pipex);
 		free_all(pipex);
 		exit(0);
 	}
+	close_one_fd(&prev_cmd->pipe_fd[0]);
+	close_one_fd(&curr_cmd->pipe_fd[0]);
+	close_one_fd(&curr_cmd->pipe_fd[1]);
 }

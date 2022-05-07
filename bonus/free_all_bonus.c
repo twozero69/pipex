@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:26 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 08:18:41 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:18:54 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	free_cmd_array(t_pipex *pipex)
 	{
 		cmd = &pipex->cmd_array[idx];
 		free_split_arr(cmd->cmd_argv);
-		print_clib_error("free_all.c: free cmd_argv", pipex);
 		idx++;
 	}
 	free(pipex->cmd_array);

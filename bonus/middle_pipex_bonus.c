@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 23:26:56 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 19:59:19 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:26:16 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex)
 	{
 		check_cmd_path(&curr_cmd->cmd_argv[0], pipex);
 		dup2(prev_cmd->pipe_fd[0], STDIN_FILENO);
-		print_clib_error("middle_pipex.c: dup2 pipe_fd[0]", pipex);
 		dup2(curr_cmd->pipe_fd[1], STDOUT_FILENO);
-		print_clib_error("middle_pipex.c: dup2 pipe_fd[1]", pipex);
+		close_one_fd(&curr_cmd->pipe_fd[0]);
 		execve(curr_cmd->cmd_argv[0], curr_cmd->cmd_argv, envp);
-		print_clib_error("middle_pipex.c: execve", pipex);
 		free_all(pipex);
 		exit(0);
 	}
-	close_one_fd(&prev_cmd->pipe_fd[0], "middle_pipex.c: close [0]", pipex);
-	close_one_fd(&curr_cmd->pipe_fd[1], "middle_pipex.c: close [1]", pipex);
+	close_one_fd(&prev_cmd->pipe_fd[0]);
+	close_one_fd(&curr_cmd->pipe_fd[1]);
 }

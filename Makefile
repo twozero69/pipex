@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/07 20:35:31 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/08 04:12:16 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ M_SRCS		= srcs/main.c \
 			srcs/error.c \
 			srcs/check_cmd_path.c \
 			srcs/close_fd.c \
-			srcs/wait_all_child.c
+			srcs/wait_all_child.c \
+			srcs/middle_pipex.c \
+			srcs/here_doc_pipex.c
 M_OBJS		= ${M_SRCS:.c=.o}
 B_SRCS		= bonus/main_bonus.c \
 			bonus/init_pipex_bonus.c \
@@ -45,7 +47,7 @@ GNL_SRCS	= get_next_line/get_next_line.c \
 GNL_OBJS	= ${GNL_SRCS:.c=.o}
 GNL_INC		= -I./get_next_line
 
-ifndef WITH_BONUS
+ifdef WITH_BONUS
 	OBJS	= ${M_OBJS}
 else
 	OBJS	= ${B_OBJS}

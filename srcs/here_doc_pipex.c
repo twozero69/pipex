@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc_pipex_bonus.c                             :+:      :+:    :+:   */
+/*   here_doc_pipex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 01:37:00 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 03:25:22 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 04:10:17 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "pipex_bonus.h"
+#include "pipex.h"
 #include "get_next_line.h"
 #include "libft.h"
 

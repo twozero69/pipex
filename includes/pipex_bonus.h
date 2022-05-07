@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/07 18:40:12 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 03:23:35 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,13 @@ void	init_pipex(int argc, char **argv, char **envp, t_pipex *pipex);
 void	free_all(t_pipex *pipex);
 void	free_split_arr(char **split_arr);
 void	check_cmd_path(char **cmd_name, t_pipex *pipex);
-void	print_clib_error(char *msg, t_pipex *pipex);
 void	exit_with_clib_error(char *msg, t_pipex *pipex);
 void	exit_with_custom_error(int my_errno, t_pipex *pipex);
 void	start_pipex(char **envp, t_pipex *pipex);
 void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex);
 void	end_pipex(char **envp, t_pipex *pipex);
 void	here_doc_pipex(t_pipex *pipex);
-void	close_one_fd(int *fd, char *msg, t_pipex *pipex);
+void	close_one_fd(int *fd);
 void	close_all_fd(t_pipex *pipex);
 void	wait_all_child(t_pipex *pipex);
 
