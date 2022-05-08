@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/08 15:07:54 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/09 00:42:57 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ GNL_INC		= -I./get_next_line
 ifndef WITH_BONUS
 	OBJS	= ${M_OBJS}
 else
-	OBJS	= ${B_OBJS}
+	OBJS	= ${M_OBJS}
 endif
 
 .c.o:

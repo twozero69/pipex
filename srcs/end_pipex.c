@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:36 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 14:11:17 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 00:48:07 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	end_pipex(char **envp, t_pipex *pipex)
 		else
 			pipex->output_fd = open(pipex->output_path, NORMAL_OPEN, 0644);
 		exit_with_clib_error(pipex->output_path, pipex);
-		check_cmd_path(&curr_cmd->cmd_argv[0], pipex);
+		check_cmd(&curr_cmd->cmd_argv[0], pipex);
 		dup2(prev_cmd->pipe_fd[0], STDIN_FILENO);
 		dup2(pipex->output_fd, STDOUT_FILENO);
 		close_one_fd(&curr_cmd->pipe_fd[0]);

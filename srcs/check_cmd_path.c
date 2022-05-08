@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 01:11:06 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 19:03:31 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 00:50:46 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "pipex.h"
 #include "libft.h"
 
-void	check_cmd_path(char **cmd_name, t_pipex *pipex)
+static void	check_cmd_path(char **cmd_name, t_pipex *pipex)
 {
 	int		idx;
 	char	*path;
@@ -38,7 +38,33 @@ void	check_cmd_path(char **cmd_name, t_pipex *pipex)
 		free(path);
 		idx++;
 	}
-	errno = 0;
-	access(*cmd_name, X_OK);
 	exit_with_cmd_error(*cmd_name, pipex);
+}
+
+static void	check_cmd_wd(char *cmd_name, t_pipex *pipex)
+{
+	access(cmd_name, X_OK);
+	exit_with_clib_error(cmd_name, pipex);
+}
+
+static int	get_slash_idx(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx] != '\0')
+	{
+		if (str[idx] == '/')
+			return (idx);
+		idx++;
+	}
+	return (-1);
+}
+
+void	check_cmd(char **cmd_name, t_pipex *pipex)
+{
+	if (get_slash_idx(*cmd_name) == -1)
+		check_cmd_path(cmd_name, pipex);
+	else
+		check_cmd_wd(*cmd_name, pipex);
 }

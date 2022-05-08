@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 23:26:56 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 13:37:57 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 00:47:38 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex)
 	if (curr_cmd->pid == 0)
 	{
 		errno = 0;
-		check_cmd_path(&curr_cmd->cmd_argv[0], pipex);
+		check_cmd(&curr_cmd->cmd_argv[0], pipex);
 		dup2(prev_cmd->pipe_fd[0], STDIN_FILENO);
 		dup2(curr_cmd->pipe_fd[1], STDOUT_FILENO);
 		close_one_fd(&curr_cmd->pipe_fd[0]);
