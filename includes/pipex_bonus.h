@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 14:20:55 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 19:03:30 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
 # ifdef __APPLE__
 #  define HERE_DOC_OPEN 521
 #  define NORMAL_OPEN 1537
-# endif
-# ifdef __linux__
+# elif __linux__
 #  define HERE_DOC_OPEN 1089
 #  define NORMAL_OPEN 577
 # endif
@@ -60,6 +59,7 @@ void	free_all(t_pipex *pipex);
 void	free_split_arr(char **split_arr);
 void	check_cmd_path(char **cmd_name, t_pipex *pipex);
 void	exit_with_clib_error(char *msg, t_pipex *pipex);
+void	exit_with_cmd_error(char *cmd_name, t_pipex *pipex);
 void	exit_with_custom_error(int my_errno, t_pipex *pipex);
 void	start_pipex(char **envp, t_pipex *pipex);
 void	middle_pipex(int cmd_no, char **envp, t_pipex *pipex);

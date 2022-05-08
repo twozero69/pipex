@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 01:11:06 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 04:10:01 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 19:03:31 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	check_cmd_path(char **cmd_name, t_pipex *pipex)
 	}
 	errno = 0;
 	access(*cmd_name, X_OK);
-	exit_with_clib_error(*cmd_name, pipex);
+	exit_with_cmd_error(*cmd_name, pipex);
 }

@@ -6,11 +6,12 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 19:52:53 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 04:10:11 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 19:13:28 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 #include <errno.h>
 #include "pipex.h"
@@ -30,7 +31,7 @@ void	exit_with_custom_error(int my_errno, t_pipex *pipex)
 	else
 		ft_putstr_fd("Invalid error no.\n", 2);
 	free_all(pipex);
-	exit(my_errno);
+	exit(0);
 }
 
 static void	print_clib_error(char *msg, t_pipex *pipex)
@@ -41,7 +42,9 @@ static void	print_clib_error(char *msg, t_pipex *pipex)
 	{
 		ft_putstr_fd(pipex->exec_path, 2);
 		ft_putstr_fd(": ", 2);
-		perror(msg);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(msg, 2);
 	}
 	errno = 0;
 }
@@ -52,5 +55,14 @@ void	exit_with_clib_error(char *msg, t_pipex *pipex)
 		return ;
 	print_clib_error(msg, pipex);
 	free_all(pipex);
-	exit(errno);
+	exit(0);
+}
+
+void	exit_with_cmd_error(char *cmd_name, t_pipex *pipex)
+{
+	ft_putstr_fd(pipex->exec_path, 2);
+	ft_putstr_fd(": command not found: ", 2);
+	ft_putendl_fd(cmd_name, 2);
+	free_all(pipex);
+	exit(0);
 }
