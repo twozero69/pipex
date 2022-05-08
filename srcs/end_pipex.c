@@ -6,13 +6,14 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:36 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 04:10:08 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 13:38:11 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <errno.h>
 #include "pipex.h"
 
 void	end_pipex(char **envp, t_pipex *pipex)
@@ -25,6 +26,7 @@ void	end_pipex(char **envp, t_pipex *pipex)
 	curr_cmd->pid = fork();
 	if (curr_cmd->pid == 0)
 	{
+		errno = 0;
 		if (pipex->here_doc_flag)
 			pipex->output_fd = open(pipex->output_path, HERE_DOC_OPEN, 0664);
 		else
