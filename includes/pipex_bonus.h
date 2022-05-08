@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 03:23:35 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/08 14:20:55 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@
 #  define FALSE 0
 # endif
 
-# define HERE_DOC_OPEN 1089
-# define NORMAL_OPEN 577
+# ifdef __APPLE__
+#  define HERE_DOC_OPEN 521
+#  define NORMAL_OPEN 1537
+# endif
+# ifdef __linux__
+#  define HERE_DOC_OPEN 1089
+#  define NORMAL_OPEN 577
+# endif
 
 typedef struct s_cmd
 {
