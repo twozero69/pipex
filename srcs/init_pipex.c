@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 20:22:03 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 04:10:23 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 00:58:39 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ static void	check_argc_argv(int argc, char **argv, t_pipex *pipex)
 	}
 	if (argc < 6 && pipex->here_doc_flag)
 		exit_with_custom_error(2, pipex);
-	while (*argv != NULL)
-	{
-		if (**argv == '\0')
-			exit_with_custom_error(3, pipex);
-		argv++;
-	}
 }
 
 static void	get_cmd_path(char **envp, t_pipex *pipex)
@@ -48,7 +42,7 @@ static void	get_cmd_path(char **envp, t_pipex *pipex)
 		}
 		idx++;
 	}
-	exit_with_custom_error(4, pipex);
+	exit_with_custom_error(3, pipex);
 }
 
 static void	make_cmd_array(int argc, char **argv, t_pipex *pipex)

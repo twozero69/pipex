@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 01:11:06 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 00:50:46 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 02:29:58 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static int	get_slash_idx(char *str)
 
 void	check_cmd(char **cmd_name, t_pipex *pipex)
 {
+	if (*cmd_name == NULL)
+		exit_with_cmd_error("", pipex);
 	if (get_slash_idx(*cmd_name) == -1)
 		check_cmd_path(cmd_name, pipex);
 	else
