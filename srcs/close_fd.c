@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:07:55 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/08 04:10:05 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 03:05:30 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static void	close_all_pipe_fd(t_pipex *pipex)
 		close_one_fd(&cmd->pipe_fd[1]);
 		idx++;
 	}
-	close_one_fd(&pipex->here_doc.pipe_fd[0]);
-	close_one_fd(&pipex->here_doc.pipe_fd[1]);
 }
 
 void	close_all_fd(t_pipex *pipex)

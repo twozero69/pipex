@@ -6,7 +6,7 @@
 #    By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 17:31:10 by younglee          #+#    #+#              #
-#    Updated: 2022/05/09 02:36:51 by younglee         ###   ########seoul.kr   #
+#    Updated: 2022/05/09 03:12:15 by younglee         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,7 @@ M_SRCS		= srcs/main.c \
 			srcs/error.c \
 			srcs/check_cmd_path.c \
 			srcs/close_fd.c \
-			srcs/wait_all_child.c \
-			srcs/middle_pipex.c \
-			srcs/here_doc_pipex.c
+			srcs/wait_all_child.c
 M_OBJS		= ${M_SRCS:.c=.o}
 B_SRCS		= bonus/main_bonus.c \
 			bonus/init_pipex_bonus.c \
@@ -38,7 +36,7 @@ B_SRCS		= bonus/main_bonus.c \
 			bonus/here_doc_pipex_bonus.c
 B_OBJS		= ${B_SRCS:.c=.o}
 INC			= -I./includes
-RM			= rm -f
+RM			= @rm -f
 LIBFT		= -L./libft -lft
 LIBFT_INC	= -I./libft
 LIBFT_LIB	= libft/libft.a
@@ -49,8 +47,10 @@ GNL_INC		= -I./get_next_line
 
 ifndef WITH_BONUS
 	OBJS	= ${M_OBJS}
+	TRASH	= ${B_OBJS}
 else
 	OBJS	= ${B_OBJS}
+	TRASH	= ${M_OBJS}
 endif
 
 .c.o:
@@ -58,6 +58,7 @@ endif
 
 ${NAME}:	${OBJS} ${LIBFT_LIB} ${GNL_OBJS}
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${GNL_OBJS}
+			${RM} ${TRASH}
 
 all:		${NAME}
 

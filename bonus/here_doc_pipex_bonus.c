@@ -6,12 +6,13 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 01:37:00 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 02:41:29 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/05/09 03:00:43 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "pipex_bonus.h"
 #include "get_next_line.h"
 #include "libft.h"
@@ -62,6 +63,7 @@ void	here_doc_pipex(t_pipex *pipex)
 	curr_cmd->pid = fork();
 	if (curr_cmd->pid == 0)
 	{
+		errno = 0;
 		dup2(curr_cmd->pipe_fd[1], STDOUT_FILENO);
 		close_one_fd(&curr_cmd->pipe_fd[0]);
 		write_here_doc(pipex);
