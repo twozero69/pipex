@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 23:17:36 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 02:41:16 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/07/17 09:39:30 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	end_pipex(char **envp, t_pipex *pipex)
 	{
 		errno = 0;
 		if (pipex->here_doc_flag)
-			pipex->output_fd = open(pipex->output_path, HERE_DOC_OPEN, 0644);
+			pipex->output_fd = open(pipex->output_path, APPEND_OPEN, 0644);
 		else
 			pipex->output_fd = open(pipex->output_path, NORMAL_OPEN, 0644);
 		exit_with_clib_error(pipex->output_path, pipex);
