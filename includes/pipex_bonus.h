@@ -6,7 +6,7 @@
 /*   By: younglee <younglee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 02:13:02 by younglee          #+#    #+#             */
-/*   Updated: 2022/05/09 02:41:02 by younglee         ###   ########seoul.kr  */
+/*   Updated: 2022/07/17 09:35:45 by younglee         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # endif
 
 # ifdef __APPLE__
-#  define HERE_DOC_OPEN 521
+#  define APPEND_OPEN 521
 #  define NORMAL_OPEN 1537
 # elif __linux__
-#  define HERE_DOC_OPEN 1089
+#  define APPEND_OPEN 1089
 #  define NORMAL_OPEN 577
 # endif
 
